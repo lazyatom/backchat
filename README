@@ -1,0 +1,17 @@
+Backchat
+========
+
+Basically a simple server to embed comments on other websites. Like, say, Trac. You can think of it a bit like Hoodwink'd, except these comments can be private, and therefore contain sensitive information.
+
+
+Usage
+-----
+
+Run the server:
+
+  $ ruby backchat.rb
+
+
+Then embed the javascript in a page or template:
+
+  <script type="text/javascript" src="http://your-server:4576/embed.js"></script>
