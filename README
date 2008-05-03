@@ -14,4 +14,13 @@ Run the server:
 
 Then embed the javascript in a page or template:
 
-  <script type="text/javascript" src="http://your-server:4576/embed.js"></script>
+  <script type="text/javascript" src="http://your-server:4576/<reference>.js"></script>
+
+Where <reference> is something uniq.
+
+
+Todo
+----
+
+Determine the reference automatically
+Redirect back to the originating page when posting

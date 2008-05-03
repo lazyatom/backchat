@@ -30,16 +30,26 @@ Styles = <<-EOS
 .backchat li .content { background-color: #fff; padding: 0.5em }
 EOS
 
+get "/embed.js" do
+  header 'Content-Type' => 'text/javascript'
+  %{var backchat_reference = encodeURIComponent(encodeURIComponent(window.document.location));
+    document.write('<script src="#{server_address}/' + backchat_reference + '"><script>')}
+end
+
 # Write the comments directly into the requesting page
-get "/:reference.js" do
+get "/:reference.:format" do
   #puts application.env
-  header 'Content-Type' => 'text/js'
+  header 'Content-Type' => 'text/javascript'
   "document.write('#{comments(params)}');"
 end
 
 def server_address
   # TODO: how to figure this out programmatically?
   "http://localhost:4567"
+end
+
+get "/test/*" do
+  params.inspect
 end
 
 # Render the comments HTML
@@ -85,10 +95,11 @@ get "/:reference" do
 end
 
 # Post a new comment for this reference
-post "/:reference" do
+post "/:reference.:format" do
   comment_attributes = params.dup.reject { |k,v| k == :format }
+  p comment_attributes
   Comment.create!(comment_attributes)
   
   # TODO: we need to redirect BACK here.
-  redirect "/#{params[:reference]}"
+  redirect params[:reference]
 end
