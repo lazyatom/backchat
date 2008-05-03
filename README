@@ -9,7 +9,7 @@ Usage
 
 Run the server:
 
-  $ ruby backchat.rb
+  $ merb -I backchat.rb
 
 
 Then embed the javascript in a page or template:
