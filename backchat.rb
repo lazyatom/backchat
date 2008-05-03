@@ -29,7 +29,9 @@ Comment.create_table unless ActiveRecord::Base.connection.tables.include?(Commen
 
 class Backchat < Merb::Controller
   def embed
-    render "document.write('#{styles}'); document.write('#{render_comments}');", :format => :js
+    script = "document.write('#{render_comments}');" 
+    script += "document.write('#{styles}');" if params[:css]
+    render script, :format => :js
   end
 
   def show
