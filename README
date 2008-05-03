@@ -7,20 +7,26 @@ Basically a simple server to embed comments on other websites. Like, say, Trac. 
 Usage
 -----
 
+You'll need a few gems first:
+
+  $ gem install merb-core bluecloth markaby activerecord
+
 Run the server:
 
+  $ cd backchat
   $ merb -I backchat.rb
 
 
 Then embed the javascript in a page or template:
 
-  <script type="text/javascript" src="http://your-server:4576/<reference>.js"></script>
+  <script type="text/javascript" src="http://your-server:4000/<reference>.js"></script>
 
-Where <reference> is something uniq.
+Where <reference> is something unique, like a trac changeset number.
 
 
-Todo
+TODO
 ----
 
-Determine the reference automatically
-Redirect back to the originating page when posting
+* A better way of embedding the HTML than document.write might be nice - the way I'm doing it right now is incredibly flaky
+* Determine the reference automatically from the URL
+* Some kind of bookmarklet
