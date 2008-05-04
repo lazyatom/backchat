@@ -72,7 +72,7 @@ class Backchat < Merb::Controller
           ul do
             @comments.each do |comment|
               li do
-                p.author "#{comment.author_name} said (#{comment.created_at.strftime("%Y-%m-%d %H:%M")})"
+                p.author "#{comment.author_name || 'someone'} said (#{comment.created_at.strftime("%Y-%m-%d %H:%M")})"
                 div.content { BlueCloth.new(comment.content).to_html }
               end
             end
